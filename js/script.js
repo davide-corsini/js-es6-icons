@@ -95,6 +95,30 @@ $(document).ready(function(){
             prefix: 'fa-',
             type: 'user',
             family: 'fas',
+        },
+        {
+            name: 'user-astronaut',
+            prefix: 'fa-',
+            type: 'user',
+            family: 'fas',
+        },
+        {
+            name: 'user-graduate',
+            prefix: 'fa-',
+            type: 'user',
+            family: 'fas',
+        },
+        {
+            name: 'user-ninja',
+            prefix: 'fa-',
+            type: 'user',
+            family: 'fas',
+        },
+        {
+            name: 'user-secret',
+            prefix: 'fa-',
+            type: 'user',
+            family: 'fas',
         }
     ];
 });
