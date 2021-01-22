@@ -6,4 +6,38 @@
 
 body{
     
+    background-color: coral;
+}
+
+.container{
+    /* delete */
+    height: 800px;
+    /* delete */
+    /* height: 100vh; */
+    width: 100%;
+    background-color: violet;
+}
+.header-top{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    height: 80px;
+    background-color: chartreuse;
+}
+
+.header-bottom{
+    height: 100px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+main{
+    /* delete */
+    height: 500px;
+    /* delete */
+    background-color: #fff;
+    width: 100%;
 }
