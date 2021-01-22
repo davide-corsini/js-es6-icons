@@ -143,7 +143,7 @@ $(document).ready(function(){
     const iconeTipi = [];
     icons.forEach((element) => {
         const{type}=element;
-        console.log(element.type);
+        console.log(type);
         //*devo inserire la condizione perché per pushare non lo deve includere
         // types.push(element.type)
         if(!iconeTipi.includes(element.type)){
@@ -171,19 +171,16 @@ $(document).ready(function(){
 
     //*stampo tutto dentro il container -----> qua penso mi serva jQuery
 
-    const doveStampo = $('.contenitore-icone');
+    const doveStampo = $('#print-tutto');
     console.log(doveStampo);
 
-    stampareTutto(iconeEcolori, doveStampo);
+    const printTutto = stampareTutto(iconeEcolori, doveStampo);
 
-    console.log(stampareTutto(iconeEcolori, doveStampo));
+    document.getElementById('print-tutto').innerHTML = printTutto;
+
+    console.log(printTutto);
 
 });
-
-
-
-
-
 
 //_Questa funzione mi serve per aggiungere all'array  iconeEtipi anche i colori
 function getColor(genere){
@@ -193,9 +190,7 @@ function getColor(genere){
     else if(genere == 'vegetable'){
         return 'orange'
     }
-    else{
-        return 'purple'
-    }
+    return 'purple';
 }
 
 //* Creo la funzione per stampare le varie icone
@@ -208,8 +203,9 @@ function stampareTutto(miServeArray, doveDevoStampare){
             //*DOVE? All' interno del ciclo stesso nel template literal le inserisco
             `
             <div class="icon">
-                <i class="${prefix}${family}" style="color:${colore}"></i>
+                <i class="${prefix} ${family} ${name}" style="color:${colore}"></i>
                 <p>mi chiamo: ${name}</p>
+                il tipo ${type}
             </div>
             
             `
