@@ -176,9 +176,8 @@ $(document).ready(function(){
 
     const printTutto = stampareTutto(iconeEcolori, doveStampo);
 
-    document.getElementById('print-tutto').innerHTML += printTutto;
 
-    console.log(printTutto);
+
 
 });
 
@@ -203,9 +202,8 @@ function stampareTutto(miServeArray, doveDevoStampare){
             //*DOVE? All' interno del ciclo stesso nel template literal le inserisco
             `
             <div class="icon">
-                <i class="${prefix} ${family} ${name}" style="color:${colore}"></i>
-                <p>mi chiamo: ${name}</p>
-                il tipo ${type}
+                <i class="${family} ${prefix}${name}" style="background-color:${colore}"></i>
+                <p>${name}</p>
             </div>
             
             `
