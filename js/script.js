@@ -176,7 +176,7 @@ $(document).ready(function(){
 
     const printTutto = stampareTutto(iconeEcolori, doveStampo);
 
-    document.getElementById('print-tutto').innerHTML = printTutto;
+    document.getElementById('print-tutto').innerHTML += printTutto;
 
     console.log(printTutto);
 
