@@ -181,26 +181,27 @@ $(document).ready(function(){
     doveStampareOpzioni.change(function(){
         const tipoSelezionato = $(this).val();
         console.log(tipoSelezionato);
-        const filtroIcone = filtroValori(iconeEcolori, tipoSelezionato)
-        console.log(filtroIcone);
-
+        const risultatoPerSelezione = filtroValori(iconeEcolori, tipoSelezionato);
+        console.log(risultatoPerSelezione);
         //adesso li passo la stampa dei filtri
-        stampareTutto(filtroIcone, doveStampo);
+        stampareTutto(risultatoPerSelezione, doveStampo);
     });
 
     function filtroValori(array, type){
         const filtroIcone = array.filter((element) => {
             return element.type == type;
         });
-
-        //questo serve al momento che seleziono all non mi venga tutto vuoto ma al contrario tutto pieno
+         //questo serve al momento che seleziono all non mi venga tutto vuoto ma al contrario tutto pieno
         //Come glielo dico?
         //se filtro icone é popopolato mi restituisce filtro icone
         //altrimenti HO CLICCATO ALL mi restituisce tutto l'array.
         if(filtroIcone.length > 0){
             return filtroIcone;
+            // animali vegetali user
         }
+        console.log(filtroIcone);
         return array;
+        //corrisponde "All"
     }
 });
 
