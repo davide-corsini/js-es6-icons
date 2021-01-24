@@ -62,7 +62,7 @@ $(document).ready(function(){
             name: 'Roger-Federer-celebrates',
             formato: '.jpg',
             type: 'tennis',
-            title: ''
+            title: 'roger federer'
         },
         // https://upload.wikimedia.org/wikipedia/commons/a/a7/LeBron_James_Lakers.jpg
         {
@@ -190,9 +190,9 @@ $(document).ready(function(){
     });
 
     const colori = [
-        'orange',
-        'red',
-        'green'
+        'linear-gradient(to left, rgba(255, 217, 0, 0.582), orange, yellow)',
+        'linear-gradient(to top, rgba(209, 77, 77, 0.856), white, red)',
+        'linear-gradient(to right, rgba(54, 105, 54, 0.459), green, lightgreen)'
     ];
 
     //adesso voglio che basket ---> orange, tennis---->red, soccer---->green
@@ -227,12 +227,12 @@ $(document).ready(function(){
 
     function getColor(sports){
         if(sports == 'basket'){
-            return 'orange';
+            return 'linear-gradient(to left, rgba(255, 217, 0, 0.582), orange, yellow)';
         }
         else if(sports == 'tennis'){
-            return 'red';
+            return 'linear-gradient(to top, rgba(209, 77, 77, 0.856), white, red)';
         }
-        return 'green';
+        return 'linear-gradient(to right, rgba(54, 105, 54, 0.459), green, lightgreen)';
     }
     //.                                           
 
@@ -248,9 +248,9 @@ $(document).ready(function(){
         array.forEach((element)=>{
             const{prefix, family, name, formato, type, title, color} = element;
             container.append(`
-                <div class="immagine" style="color:${color}">
+                <div class="immagine" style="background:${color}">
                     <img src="${prefix}${family}${name}${formato}" alt="">
-                    <p class='title'>${title}</p>
+                    <p class='title' style="color: black;">${title.toUpperCase()}</p>
                 </div>
             `);
         });
