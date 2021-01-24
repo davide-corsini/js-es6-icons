@@ -250,7 +250,7 @@ $(document).ready(function(){
             container.append(`
                 <div class="immagine" style="background:${color}">
                     <img src="${prefix}${family}${name}${formato}" alt="">
-                    <p class='title' style="color: black;">${title.toUpperCase()}</p>
+                    <p class='title' style="color: white;">${title.toUpperCase()}</p>
                 </div>
             `);
         });
