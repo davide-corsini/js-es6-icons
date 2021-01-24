@@ -5,7 +5,8 @@
 //. 1)animali   2)vegetali    3) users
 //_punto#3 devo mappare array gigante per aggiungere i colori di array "colori"
 //*punto#4 devo stampare tutto
-
+//{punro#5 appendere alla select che contiene solo 'All' anche i tipi che trovo nelle iconePertipo}
+//.punto#6 adesso devo far ritornare quello che clicco nella select con un metodo jQuery che si chiama "change()"
 $(document).ready(function(){
 
     //*Questo é il mio array da inserire nel mio foglio html e su cui fare tutti i relativi cicli
@@ -140,17 +141,8 @@ $(document).ready(function(){
     ];
     console.log(colori);
     //.per rispondere al punto #2 devo ciclare sull array principale
-    const iconeTipi = [];
-    icons.forEach((element) => {
-        const{type}=element;
-        console.log(type);
-        //*devo inserire la condizione perché per pushare non lo deve includere
-        // types.push(element.type)
-        if(!iconeTipi.includes(element.type)){
-            iconeTipi.push(element.type);
-        };
-
-    });
+    const iconeTipi = prendoPerTipo(icons);
+    
     console.log(iconeTipi);
 
 
@@ -174,12 +166,63 @@ $(document).ready(function(){
     const doveStampo = $('#print-tutto');
     console.log(doveStampo);
 
-    const printTutto = stampareTutto(iconeEcolori, doveStampo);
+    stampareTutto(iconeEcolori, doveStampo);
+
+
+    //{#5}
+    //salvo in una constante la select su cui devo appendere e stampare
+    const doveStampareOpzioni = $('#selezione');
+    stampoOpzioni(iconeTipi,doveStampareOpzioni);
 
 
 
+    //.#6 rispondo al punto 6
+    //utilizzo questo change su dove ho stampato le opzioni, funziona come un onclick
+    doveStampareOpzioni.change(function(){
+        const tipoSelezionato = $(this).val();
+        console.log(tipoSelezionato);
+        const filtroIcone = filtroValori(iconeEcolori, tipoSelezionato)
+        console.log(filtroIcone);
 
+        //adesso li passo la stampa dei filtri
+        stampareTutto(filtroIcone, doveStampo);
+    });
+
+    function filtroValori(array, type){
+        const filtroIcone = array.filter((element) => {
+            return element.type == type;
+        });
+
+        //questo serve al momento che seleziono all non mi venga tutto vuoto ma al contrario tutto pieno
+        //Come glielo dico?
+        //se filtro icone é popopolato mi restituisce filtro icone
+        //altrimenti HO CLICCATO ALL mi restituisce tutto l'array.
+        if(filtroIcone.length > 0){
+            return filtroIcone;
+        }
+        return array;
+    }
 });
+
+
+//*#1 FUNZIONE CHE MI SERVE A FARE UN ARRAY DI ICONE PER TIPO
+function prendoPerTipo(array) {
+    const iconeTipi = [];
+    array.forEach((element) => {
+        //*devo inserire la condizione perché per pushare non lo deve includere
+        // types.push(element.type)
+        if (!iconeTipi.includes(element.type)) {
+            iconeTipi.push(element.type);
+        };
+
+    });
+    return iconeTipi;
+}
+
+
+
+
+
 
 //_Questa funzione mi serve per aggiungere all'array  iconeEtipi anche i colori
 function getColor(genere){
@@ -194,6 +237,7 @@ function getColor(genere){
 
 //* Creo la funzione per stampare le varie icone
 function stampareTutto(miServeArray, doveDevoStampare){
+    doveDevoStampare.html('');
     miServeArray.forEach((element) => {
         const {name,prefix,type,family,colore} = element;
         doveDevoStampare.append(
@@ -202,11 +246,24 @@ function stampareTutto(miServeArray, doveDevoStampare){
             //*DOVE? All' interno del ciclo stesso nel template literal le inserisco
             `
             <div class="icon">
-                <i class="${family} ${prefix}${name}" style="background-color:${colore}"></i>
+                <i class="${family} ${prefix}${name}" style="color:${colore}"></i>
                 <p>${name}</p>
             </div>
-            
             `
         );
     });
 }
+
+
+//{#5 Rispondo al punto numero 5}
+function stampoOpzioni(array, select) {
+    //la select corrisponde---> a dove appendo le opzioni e quindi le stampo
+    //elemento su cui ciclare, qual é l'array su cui devo farlo? semplicemente
+    //quello delle icone per tipo
+    array.forEach((element) => {
+        select.append(`
+                <option value='${element}'>${element}</option>
+            `);
+    });
+};
+
